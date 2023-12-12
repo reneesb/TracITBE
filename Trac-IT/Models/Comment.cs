@@ -9,5 +9,6 @@ namespace TracIT.Models
         public string commentText { get; set; }
         public User user { get; set; }
         public Issue issue { get; set; }
+
     }
 }

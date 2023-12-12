@@ -7,5 +7,7 @@ namespace TracIT.Models
         [Key]
         public int statusId { get; set; }
         public string statusName { get; set; }
+        public List<IssueStatus> Issuestatuses { get; set; }
+
     }
 }

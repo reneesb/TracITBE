@@ -6,9 +6,14 @@ namespace TracIT.Models
     public class User
     {
         [Key]
-        public int Id { get; set; }
+        public int userId { get; set; }
         public string Uid { get; set; }
-        public string userName { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string userRole { get; set; }
+        public string imageUrl { get; set; }
+        
+
         
     }
 }

@@ -9,6 +9,8 @@ namespace TracIT
         public DbSet<Issue> Issues { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Status> Status { get; set; }
+        public DbSet<IssueStatus> IssueStatuses { get; set; }
+        public DbSet<IssueUser> IssueUser { get; set; }
 
         public TracITDbContext(DbContextOptions<TracITDbContext> context) : base(context) 
         {

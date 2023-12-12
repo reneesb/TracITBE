@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TracIT;
@@ -11,9 +12,10 @@ using TracIT;
 namespace Trac_IT.Migrations
 {
     [DbContext(typeof(TracITDbContext))]
-    partial class TracITDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206172333_issueusertable")]
+    partial class issueusertable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

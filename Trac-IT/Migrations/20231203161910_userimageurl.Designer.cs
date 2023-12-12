@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TracIT;
@@ -11,9 +12,10 @@ using TracIT;
 namespace Trac_IT.Migrations
 {
     [DbContext(typeof(TracITDbContext))]
-    partial class TracITDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231203161910_userimageurl")]
+    partial class userimageurl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,7 +78,7 @@ namespace Trac_IT.Migrations
                         new
                         {
                             issueId = 1,
-                            dateTimeCreated = new DateTime(2023, 12, 6, 12, 23, 32, 401, DateTimeKind.Local).AddTicks(9396),
+                            dateTimeCreated = new DateTime(2023, 12, 3, 11, 19, 9, 723, DateTimeKind.Local).AddTicks(5918),
                             description = "Create modal for entering new issue",
                             title = "Create Modal"
                         });
@@ -98,34 +100,7 @@ namespace Trac_IT.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("issueId");
-
-                    b.HasIndex("statusId");
-
                     b.ToTable("IssueStatuses");
-                });
-
-            modelBuilder.Entity("TracIT.Models.IssueUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("issueId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("userId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("issueId");
-
-                    b.HasIndex("userId");
-
-                    b.ToTable("IssueUser");
                 });
 
             modelBuilder.Entity("TracIT.Models.Status", b =>
@@ -212,56 +187,6 @@ namespace Trac_IT.Migrations
                     b.Navigation("issue");
 
                     b.Navigation("user");
-                });
-
-            modelBuilder.Entity("TracIT.Models.IssueStatus", b =>
-                {
-                    b.HasOne("TracIT.Models.Issue", "issue")
-                        .WithMany("Issuestatuses")
-                        .HasForeignKey("issueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TracIT.Models.Status", "status")
-                        .WithMany("Issuestatuses")
-                        .HasForeignKey("statusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("issue");
-
-                    b.Navigation("status");
-                });
-
-            modelBuilder.Entity("TracIT.Models.IssueUser", b =>
-                {
-                    b.HasOne("TracIT.Models.Issue", "issue")
-                        .WithMany("Assignees")
-                        .HasForeignKey("issueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TracIT.Models.User", "user")
-                        .WithMany()
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("issue");
-
-                    b.Navigation("user");
-                });
-
-            modelBuilder.Entity("TracIT.Models.Issue", b =>
-                {
-                    b.Navigation("Assignees");
-
-                    b.Navigation("Issuestatuses");
-                });
-
-            modelBuilder.Entity("TracIT.Models.Status", b =>
-                {
-                    b.Navigation("Issuestatuses");
                 });
 #pragma warning restore 612, 618
         }
